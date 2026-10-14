@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b1020">
-  <meta name="description" content="The Axiom Continuum — a universe of experiences. A different discovery behind every door. A new interactive destination is taking shape.">
+  <meta name="description" content="The Axiom Continuum — a universe of experiences. A different discovery behind every door. Explore our first interactive story and discover what's coming next.">
   <title>The Axiom Continuum — A Universe of Experiences</title>
   <link rel="icon" type="image/png" href="/assets/tac-emblem.png">
   <style>
@@ -28,6 +28,14 @@
     .tagline { font-family: Georgia, serif; font-style: italic; font-size: clamp(1.1rem, 2.8vw, 1.65rem); line-height: 1.6; color: #d7dcf0; margin: 28px 0 0; }
     .rule { width: 62px; height: 1px; background: #c9ac76; margin: 43px auto 30px; }
     .message { color: #b9c4d9; font-size: 1.05rem; line-height: 1.9; max-width: 610px; margin: 0; }
+    .featured { width: 100%; max-width: 700px; margin-top: 52px; padding: 35px 25px; border: 1px solid #c9ac7666; border-radius: 14px; background: #ffffff09; box-shadow: 0 10px 42px #00000022; }
+    .featured-label { margin: 0 0 14px; color: #d2b47d; text-transform: uppercase; letter-spacing: .23em; font-size: .7rem; font-weight: 700; }
+    .featured h2 { margin: 0; font: 400 clamp(1.9rem, 5vw, 2.7rem) Georgia, serif; }
+    .featured p { color: #c5d0e2; font-size: .98rem; line-height: 1.7; margin: 16px auto 24px; }
+    .featured a { display: inline-block; padding: 14px 25px; border: 1px solid #d2b47d; border-radius: 6px; color: #0b1020; background: #d2b47d; font-weight: 700; text-decoration: none; }
+    .featured a:hover { background: #e5c990; border-color: #e5c990; }
+    .featured a:focus-visible { outline: 3px solid #f2f2f7; outline-offset: 4px; }
+    .preview { color: #aebad0; font-size: .78rem; margin-top: 15px; }
     .doors { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; margin-top: 56px; }
     .door { border: 1px solid #a9b5ca2b; border-radius: 14px; padding: 24px 14px; background: #ffffff06; }
     .door strong { display: block; font-family: Georgia, serif; font-size: clamp(1.2rem, 2.4vw, 1.6rem); font-weight: 400; }
@@ -50,13 +58,20 @@
     <h1>The Axiom<br>Continuum</h1>
     <p class="tagline">A universe of experiences.<br>A different discovery behind every door.</p>
     <div class="rule" aria-hidden="true"></div>
-    <p class="message">A new world of interactive entertainment and discovery is taking shape. Explore branching stories, investigate mysteries, and challenge the unexpected—when our first experiences are ready.</p>
-    <section class="doors" aria-label="Planned experience collections">
+    <p class="message">A world of interactive entertainment and discovery is taking shape. Our first experimental story is ready to explore, with more experiences to come.</p>
+    <section class="featured" aria-labelledby="featured-title">
+      <p class="featured-label">Our first interactive experience</p>
+      <h2 id="featured-title">The Three Doors</h2>
+      <p>Three doors. Three paths. Three endings. What will you discover?</p>
+      <a href="/stories/the-three-doors/">Play The Three Doors →</a>
+      <div class="preview">Experimental preview · Free to explore</div>
+    </section>
+    <section class="doors" aria-label="Experience collections">
       <div class="door"><strong>Stories</strong><span>Choose your path.</span></div>
       <div class="door"><strong>Cases</strong><span>Find the truth.</span></div>
       <div class="door"><strong>Challenges</strong><span>Unlock the impossible.</span></div>
     </section>
-    <p class="coming">Coming in the future</p>
+    <p class="coming">More experiences are on the way</p>
     <footer>© 2026 The Axiom Continuum. All rights reserved.</footer>
   </main>
 </body>
