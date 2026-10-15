@@ -352,7 +352,7 @@ q_decrees:{t:"Who Writes the Decrees?",p:s=>[
 q_why:{t:"Why Did Everyone Forget?",p:[
  "\"Because they loved you,\" Sabeline says. \"Too much. At your fortieth birthday there were ten thousand people in the square weeping with joy, and not one of them could tell you what a single law said.\"",
  "\"You said a kingdom that loves its king more than its laws is one bad heir away from ruin. So you wrote the laws down. You built something to keep them. And you asked me to take you out of every mind in Calderran, yours included, for one year.\"",
- "\"Then you'd walk back in as a stranger and see whether the kingdom could stand without you.\"",
+ "\"Then you'd walk back in as a stranger and see whether the kingdom could stand without you. The rite obscures conscious identity, not lingering habits or an animal's loyalty.\"",
  "\"And could it?\"",
  "She tilts her head toward the window. \"You tell me. You've walked its streets all day.\""],
  o:s=>roomOpts(s)},
@@ -373,8 +373,8 @@ q_wants:{t:"What Sabeline Wants",p:[
 ledger:{t:"The Red Ledger",p:s=>[
  "Sabeline unbuckles the ledger and opens it to the last written page. In your own leaning hand is a full account of the Unremembering. Beneath it, a single line: a name.",
  "\"Carry it to the throne and speak it,\" she says, \"and every memory in Calderran comes home. You'll be king again by midnight. Or close the book, and at the turning of the year the forgetting sets forever. The Charter alone will govern, and you will be a stranger here for the rest of your life.\"",
- "She hesitates. \"There's a third thing you once mentioned, which I told you was mad. Take the book to the square. Read all of it aloud. Let *them* decide.\"",
- s.f.forgery ? "\"Whatever you choose, you're holding proof of what Marrant has done. Use it.\"" : "\"Whatever you choose, remember: someone is still feeding that machine false law, and we don't know who.\""],
+ "She hesitates. \"There's a third thing you once mentioned, which I told you was mad. Take the book to the square. Read the account without speaking the sealed name, and let *them* decide.\"",
+ s.f.proof ? "\"Whatever you choose, you're holding proof of what Marrant has done. Use it.\"" : "\"Whatever you choose, remember: someone is still feeding that machine false law, and we don't know who.\""],
  o:s=>[["Carry the name to the throne and speak it", s.f.proof?"E1":"E3"],["Close the ledger and let the Charter rule", s.f.proof?"E2":"E4"],["Read the ledger aloud in the square","E6"]]},
 
 E1:{end:true,t:"The King Returns",p:[
@@ -417,7 +417,7 @@ E6:{end:true,t:"The Open Ledger",p:s=>[
  "You carry the red ledger down to the fountain at dusk and ask Tamsin to ring her bell. Then you read. All of it: the king's fear, the Charter, the Unremembering, the year-long test.",
  "The square is silent when you finish.",
  s.f.proof ? "Then you hold up the green-sealed forgeries. Tamsin unpins her copies beside them, and the whole crowd turns, as one, toward the Chancellor's balcony. Marrant is gone by morning." : "At the back of the crowd, Lord Chancellor Marrant applauds politely, then slips away to think. You will be watching him for a long time.",
- "They argue past midnight. In the end they ask you to set the ledger on the throne, closed, where anyone may open it and read the name if the Charter ever fails them. A king kept in reserve, like grain against a dry summer.",
+ "They argue past midnight. They agree to safeguard the ledger under a public seal, and no one may utter the royal name without a collective decision.",
  "You become the first Keeper of the Ledger. It is not a crown. It suits you better."]}
 };
 
@@ -457,10 +457,10 @@ function go(to,extra){
   const sc=S[to];
   (sc.set||[]).forEach(k=>state.f[k]=1);
   if(sc.end) saveEnding(to);
-  render(true);
+  persist();render(true);
 }
-function back(){if(!history.length) return; state=JSON.parse(history.pop()); render(true)}
-function restart(){history=[];state=fresh();render(true)}
+function back(){if(!history.length) return; state=JSON.parse(history.pop());persist();render(true)}
+function restart(){history=[];state=fresh();persist();render(true)}
 
 function render(scroll){
   const sc=S[state.scene], main=document.getElementById("main");
@@ -506,8 +506,9 @@ document.addEventListener("keydown",e=>{
 function start(data){
   state=(data&&data.state)?data.state:fresh();
   history=(data&&data.history)?data.history:[];
-  render(false);
+  persist();render(false);
 }
+document.getElementById("ledgerToggle").addEventListener("click",()=>{const a=document.getElementById("clueAside"),b=document.getElementById("ledgerToggle");const open=a.classList.toggle("ledger-open");b.setAttribute("aria-expanded",String(open));b.textContent=open?"Hide Evidence Ledger":"View Evidence Ledger";});
 window.claude?.hot?.snapshot?.(()=>({state,history}));
 window.claude?.hot?.ready ? window.claude.hot.ready(start) : start(restore());
 </script>
