@@ -18,6 +18,8 @@
     const a = document.createElement('a');
     a.className = 'daily-door-tile';
     a.href = door.url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
     a.dataset.day = String(door.day);
     a.setAttribute('aria-label', 'Door ' + door.day + ': ' + door.title + ', ' + door.genre);
     const front = document.createElement('span'); front.className = 'daily-door-tile-front';
@@ -52,6 +54,8 @@
       genre.textContent = chosen.genre;
       number.textContent = String(today).padStart(2, '0');
       link.href = chosen.url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
       link.setAttribute('aria-label', 'Open today’s story: ' + chosen.title);
       activeDay = today;
     }
