@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex,nofollow">
 <link rel="icon" type="image/svg+xml" href="https://theaxiomcontinuum.com/assets/tac-emblem.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:ital,wght@0,400;0,600;0,800;1,400&display=swap"
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:ital,wght@0,400;0,600;0,800;1,400&display=swap">
 <style>
 /* Layout: the departmental board (NOW SERVING ticket, wall clock to 17:00, echo strength) under the title; the scene with forms and memos; the Docket (Form 77-B with three stamp boxes), Audit Risk, and the In-Tray of forgotten promises alongside. */
 :root{
@@ -258,13 +258,13 @@ method:{t:`Method of Delivery`,p:s=>[
 
 deliver:{t:`Out for Delivery`,p:s=>[
  `The cartridge goes into the pneumatic tube with a soft *thoomp*, and is gone, upward, toward the living.`,
- s.kept.length?`Mrs. Gristle countersigns your docket without a word, glancing at your emptier in-tray. That might have been approval.`:`Mrs. Gristle looks at your in-tray, still three feet deep in forgotten promises, and makes you sit down and process one before she'll countersign. "Little promises first," she says. "Always."`,
+ s.kept.length?`Mrs. Gristle countersigns your docket without a word, glancing at your emptier in-tray. That might have been approval.`:`Mrs. Gristle looks at your in-tray, still three feet deep in forgotten promises, and points you back to the desk. "Process one before I countersign. Little promises first," she says. "Always."`,
  s.f.found&&!s.f.putBack?`That leaves Echo 0413, warm in your pocket.`:`And that's that.`],
- o:s=>{const o=[];
-  if(s.f.found&&!s.f.putBack) o.push([`Take Echo 0413 down to Waiting Room 6 yourself`,endFor(s,true),{t:s.kept.length?1:2}]);
-  o.push([`Close the file`,endFor(s,false),{t:s.kept.length?0:1}]);
-  o.push([`Go and tell Walter it's been sent`,endFor(s,false),{t:s.kept.length?1:2},`Waiting Room 6`]);
-  if(o.length<3) o.push([`Go home. It's nearly five.`,endFor(s,false),{t:s.kept.length?0:1}]);
+ o:s=>{const o=[];const finish=s.kept.length?{}:{keep:"call"};
+  if(s.f.found&&!s.f.putBack) o.push([`Take Echo 0413 down to Waiting Room 6 yourself`,endFor(s,true),{t:s.kept.length?1:2,...finish}]);
+  o.push([`Close the file`,endFor(s,false),{t:s.kept.length?0:1,...finish}]);
+  o.push([`Go and tell Walter it's been sent`,endFor(s,false),{t:s.kept.length?1:2,...finish},`Waiting Room 6`]);
+  if(o.length<3) o.push([`Go home. It's nearly five.`,endFor(s,false),{t:s.kept.length?0:1,...finish}]);
   return o.slice(0,3);}},
 
 E1:{end:true,best:true,t:`Both Ways`,p:s=>[
@@ -278,8 +278,8 @@ E1:{end:true,best:true,t:`Both Ways`,p:s=>[
 E2:{end:true,t:`One Way`,p:s=>[
  `Echo 0412 is delivered. ${s.f.dream?"Margaret hears it that night, in a dream, in Walter's voice, all four words, and wakes up crying and smiling.":s.f.song?"In the day room at Larkhill House the radio plays the song from the dance hall in Stoke, and Margaret sings along under her breath.":"Margaret finds Walter's old train ticket in a library book and keeps it under her pillow."}`,
  `In Waiting Room 6, Walter Quince sits a little straighter. "She got it, then," he says. "Good. Good." But he doesn't get up. He's still almost sure she said something back.`,
- `${s.f.putBack?"Somewhere on the Unsorted shelf on Floor 9, Echo 0413 sits where you put it back.":"Somewhere on Floor 9, on the Unsorted shelf, there's a cartridge filed at the same second as his."}`,
- `*Delivered one way. The truest ending finds what Margaret said back, on the Unsorted shelf, and takes it down to Waiting Room 6.*`]},
+ `${s.f.putBack?"Somewhere on the Unsorted shelf on Floor 9, Echo 0413 sits where you put it back.":s.f.found?"Echo 0413 is still in your pocket. You found Margaret’s answer but chose not to bring it to Walter.":"Somewhere on Floor 9, on the Unsorted shelf, there's a cartridge filed at the same second as his."}`,
+ `${s.forged.includes("sent")?"*The Sentiment stamp was forged. The truest ending requires honest authorisation, and both voices delivered.*":"*Delivered one way. The truest ending finds what Margaret said back, on the Unsorted shelf, and takes it down to Waiting Room 6.*"}`]},
 
 E3:{end:true,t:`Shredded at Five`,p:s=>[
  `The wall clock says five. Somewhere in the basement, the shredder starts up with a noise like a polite cough.`,
@@ -309,6 +309,8 @@ E6:{end:true,t:`Misdelivered`,p:s=>[
 };
 function endFor(s,both){
   if(s.forged.includes("rec")) return "E6";
+  // The strongest ending requires genuine Records and Sentiment stamps.
+  if(both&&s.forged.length) return "E2";
   return both?"E1":"E2";
 }
 function liftOpts(s){
