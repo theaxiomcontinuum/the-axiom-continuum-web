@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b1020">
-  <meta name="description" content="The Axiom Continuum — a universe of experiences. A different discovery behind every door. Explore our first interactive story and discover what's coming next.">
+  <meta name="description" content="The Axiom Continuum — a universe of experiences. A different discovery behind every door. Explore 31 original interactive Daily Door stories, with a different featured door each day.">
   <title>The Axiom Continuum — A Universe of Experiences</title>
   <style>
     :root { color-scheme: dark; font-family: "Segoe UI", Inter, system-ui, -apple-system, sans-serif; }
@@ -49,6 +49,36 @@
       .door { padding: 19px; }
       .tagline { margin-top: 20px; }
     }
+
+    /* Daily Door: 31 accessible stories, one highlighted by the visitor's local date. */
+    .daily-section { width: 100%; max-width: 920px; margin-top: 70px; }
+    .daily-heading { margin: 0 0 8px; color: #e6cb93; font: 400 clamp(2.2rem,5vw,3.3rem) Georgia,serif; }
+    .daily-intro { max-width: 660px; margin: 0 auto 28px; color: #b9c4d9; line-height: 1.7; }
+    .daily-feature { max-width: 700px; margin: 0 auto; border: 1px solid #ddbd79a8; border-radius: 18px; padding: 27px 25px 30px; background: linear-gradient(145deg,#ddbd791d,#ffffff08 62%); box-shadow:0 14px 55px #0003; }
+    .daily-feature-eyebrow { margin:0 0 12px; color:#e9c98c; font-size:.74rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase; }
+    .daily-feature-number { display:inline-grid;place-items:center;min-width:76px;min-height:76px;border:1px solid #d2b47d;border-radius:14px;background:#d2b47d14;color:#f1d7a5;font:400 2.3rem Georgia,serif;margin:0 auto 18px; }
+    .daily-feature h3 {font:400 clamp(1.8rem,4.5vw,2.6rem) Georgia,serif; margin:0; text-wrap:balance;}
+    .daily-feature-genre { margin:10px 0 19px; color:#bec9dd; font-size:.9rem; }
+    .daily-open { display:inline-block; padding:12px 24px; background:#d2b47d; color:#0b1020; border-radius:7px; font-weight:750; text-decoration:none; }
+    .daily-open:hover {background:#e5c990;}
+    .daily-open:focus-visible,.daily-door-tile:focus-visible {outline:3px solid #fff;outline-offset:4px;}
+    .daily-section h4 {text-align:left;color:#d2b47d;font:400 1.5rem Georgia,serif;margin:40px 0 8px;}
+    .daily-library-description {text-align:left;font-size:.86rem;color:#aebbd2;margin:0 0 18px;line-height:1.65;}
+    .daily-door-grid {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;text-align:left;}
+    .daily-door-tile {display:flex;flex-direction:column;min-height:168px;padding:17px 15px 15px;border:1px solid #92a4bf3b;border-radius:12px;background:#ffffff08;color:#f2f2f7;text-decoration:none;transition:transform .16s ease,border-color .16s ease,background .16s ease;}
+    .daily-door-tile:hover {transform:translateY(-3px);border-color:#d2b47d;background:#ffffff11;}
+    .daily-door-tile.is-today {border-color:#e4c27b;background:linear-gradient(160deg,#d2b47d2a,#ffffff0a);box-shadow:inset 0 0 0 1px #d2b47d50;}
+    .daily-door-tile-front {display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:13px;}
+    .daily-door-tile-number {font:400 1.95rem Georgia,serif;color:#dec28d;line-height:1;}
+    .daily-door-tile-badge {font-size:.61rem;font-weight:800;letter-spacing:.08em;color:#0b1020;background:#dec28d;padding:4px 6px;border-radius:4px;}
+    .daily-door-tile-badge[hidden] {display:none!important;}
+    .daily-door-tile strong {display:block;font:400 1.02rem/1.25 Georgia,serif;}
+    .daily-door-tile-genre {display:block;margin-top:auto;padding-top:13px;font-size:.71rem;line-height:1.4;color:#b4c1d4;}
+    .daily-date {color:#bbc6db;font-size:.82rem;margin:0 0 21px;}
+    .sr-only {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+    @media(max-width:800px){.daily-door-grid{grid-template-columns:repeat(3,minmax(0,1fr));}}
+    @media(max-width:600px){.daily-section{margin-top:60px}.daily-door-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.daily-door-tile{min-height:153px;padding:14px 12px}.daily-feature{padding:24px 17px}.daily-door-tile strong{font-size:.94rem}.daily-door-tile-number{font-size:1.7rem;}}
+    @media(max-width:340px){.daily-door-grid{grid-template-columns:1fr}.daily-door-tile{min-height:130px}}
     @media(prefers-reduced-motion:reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
   </style>
 </head>
@@ -59,13 +89,30 @@
     <h1>The Axiom<br>Continuum</h1>
     <p class="tagline">A universe of experiences.<br>A different discovery behind every door.</p>
     <div class="rule" aria-hidden="true"></div>
-    <p class="message">A world of interactive entertainment and discovery is taking shape. Our first experimental story is ready to explore, with more experiences to come.</p>
+    <p class="message">A world of interactive entertainment and discovery is taking shape. Explore 31 original interactive Daily Door stories. Every door is open, and a new story is featured each day according to your local calendar.</p>
     <section class="featured" aria-labelledby="featured-title">
       <p class="featured-label">Our first interactive experience</p>
       <h2 id="featured-title">The Three Doors</h2>
       <p>Three doors. Three paths. Three endings. What will you discover?</p>
       <a href="/stories/the-three-doors/">Play The Three Doors →</a>
       <div class="preview">Experimental preview · Free to explore</div>
+    </section>
+
+    <section class="daily-section" id="daily-doors" aria-labelledby="daily-doors-title">
+      <h2 class="daily-heading" id="daily-doors-title">The Daily Door</h2>
+      <p class="daily-intro">31 original interactive adventures. One new featured door each day. Every story is yours to explore whenever curiosity calls.</p>
+      <div class="daily-feature" aria-labelledby="daily-door-title">
+        <p class="daily-feature-eyebrow">Today’s Door · <span id="daily-door-date">Your local day</span></p>
+        <div class="daily-feature-number" id="daily-door-number" aria-label="Today's door number">—</div>
+        <h3 id="daily-door-title">Discover today’s story</h3>
+        <p class="daily-feature-genre" id="daily-door-genre">The door changes with your calendar.</p>
+        <a class="daily-open" id="daily-door-link" href="#daily-door-grid">Explore today’s door →</a>
+      </div>
+      <h4>Explore all 31 doors</h4>
+      <p class="daily-library-description">Each numbered door opens a complete standalone experience. The highlighted door follows the date on your device; the rest never lock.</p>
+      <div class="daily-door-grid" id="daily-door-grid" aria-label="All 31 Daily Door stories"></div>
+      <p class="sr-only" id="daily-door-status" aria-live="polite"></p>
+      <noscript><p class="daily-library-description">JavaScript is needed to display and highlight the 31 Daily Doors. The original featured story above remains available.</p></noscript>
     </section>
     <section class="doors" aria-label="Experience collections">
       <div class="door"><strong>Stories</strong><span>Choose your path.</span></div>
@@ -75,5 +122,7 @@
     <p class="coming">More experiences are on the way</p>
     <footer>© 2026 The Axiom Continuum. All rights reserved.</footer>
   </main>
+  <script defer src="/assets/daily-door-registry.js"></script>
+  <script defer src="/assets/daily-door-engine.js"></script>
 </body>
 </html>
