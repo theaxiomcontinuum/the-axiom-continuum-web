@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#080f20">
-  <meta name="description" content="The Axiom Continuum is evolving. Discover DoorQuests, an interactive world of Stories, Cases, Challenges and Games created by The Axiom Continuum.">
+  <meta name="description" content="Explore DoorQuests, Satoshium, and BitPangea from The Axiom Continuum’s evolving creative hub.">
   <link rel="icon" type="image/svg+xml" href="/assets/tac-emblem.svg">
   <link rel="canonical" href="https://theaxiomcontinuum.com/">
   <title>The Axiom Continuum | Discover DoorQuests</title>
@@ -26,6 +26,18 @@
     .cta{display:inline-flex;align-items:center;justify-content:center;gap:12px;background:linear-gradient(135deg,#f5d796,#c99a56);color:#101626;text-decoration:none;padding:16px 30px;border-radius:100px;font-weight:750;box-shadow:0 10px 35px #0007;transition:transform .2s,box-shadow .2s}
     .cta:hover{transform:translateY(-2px);box-shadow:0 13px 40px #e1bc7a36}.cta:focus-visible{outline:3px solid white;outline-offset:5px}
     .sub{color:var(--muted);font-size:.87rem;line-height:1.8;margin-top:22px}
+    .projects{width:100%;margin-top:58px;padding-top:37px;border-top:1px solid var(--line);text-align:left}
+    .projects h2{font:500 clamp(1.7rem,3.6vw,2.15rem)/1.25 Georgia,serif;text-align:center;margin:0 0 11px}
+    .projects-note{text-align:center;margin:0 auto 27px;max-width:620px;font-size:.91rem;line-height:1.7;color:var(--muted)}
+    .project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .project{background:linear-gradient(145deg,rgba(30,49,77,.8),rgba(10,22,42,.88));border:1px solid var(--line);border-radius:16px;padding:24px 20px 22px;display:flex;flex-direction:column;min-height:245px}
+    .project.featured{border-color:rgba(225,188,122,.72);box-shadow:0 0 35px rgba(225,188,122,.08)}
+    .project-kicker{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;font-weight:750;color:var(--gold);margin:0 0 12px}
+    .project h3{font:500 1.58rem/1.2 Georgia,serif;margin:0 0 13px}
+    .project p:not(.project-kicker){font-size:.92rem;line-height:1.68;color:var(--muted);margin:0 0 21px;flex:1}
+    .project a{color:var(--gold);font-weight:650;text-decoration:none;align-self:flex-start}
+    .project a:hover{text-decoration:underline;color:var(--text)}.project a:focus-visible{outline:2px solid var(--gold);outline-offset:5px}
+    @media(max-width:700px){.project-grid{grid-template-columns:1fr}.project{min-height:0}.projects{margin-top:42px}}
     footer{border-top:1px solid var(--line);padding-top:23px;color:var(--muted);font-size:.79rem}
     @media(prefers-reduced-motion:reduce){.cta{transition:none}.cta:hover{transform:none}}
   </style>
@@ -44,7 +56,31 @@
       <div class="rule" aria-hidden="true"></div>
       <p class="intro"><strong>DoorQuests</strong> is our interactive destination for Stories, Cases, Challenges and Games. Choose your path, find the truth, and unlock the impossible.</p>
       <a class="cta" href="https://doorquests.com/">Enter DoorQuests <span aria-hidden="true">→</span></a>
-      <p class="sub">Created by The Axiom Continuum.<br>Our parent creative website will return in a new form.</p>
+      <p class="sub">Created by The Axiom Continuum.<br>Our broader creative hub is taking shape.</p>
+      <section class="projects" aria-labelledby="projects-heading">
+        <h2 id="projects-heading">Explore Our Projects</h2>
+        <p class="projects-note">Distinct destinations and ideas from across our creative work. DoorQuests is open now; the others continue to evolve independently.</p>
+        <div class="project-grid">
+          <article class="project featured">
+            <p class="project-kicker">Featured destination · Play now</p>
+            <h3>DoorQuests</h3>
+            <p>Choose Your Path. Find the Truth. Unlock the Impossible. Explore interactive stories, mysteries, challenges and games.</p>
+            <a href="https://doorquests.com/">Explore DoorQuests →</a>
+          </article>
+          <article class="project">
+            <p class="project-kicker">Digital trust · In development</p>
+            <h3>Satoshium</h3>
+            <p>An institutional framework for verifiable records, governed attestation, and digital trust.</p>
+            <a href="https://satoshium.ai/">Explore Satoshium →</a>
+          </article>
+          <article class="project">
+            <p class="project-kicker">Digital world · In development</p>
+            <h3>BitPangea</h3>
+            <p>An evolving digital world exploring creation, interaction, and autonomous agents.</p>
+            <a href="https://bitpangea.com/">Explore BitPangea →</a>
+          </article>
+        </div>
+      </section>
     </main>
     <footer>
       <span>© 2026 The Axiom Continuum. All rights reserved.</span>
